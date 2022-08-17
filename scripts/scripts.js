@@ -30,14 +30,14 @@ btnsLike.forEach(function(btn) {
     })
 })*/
 
-const btnLike = document.querySelectorAll('.element__button-like');
+/*const btnLike = document.querySelectorAll('.element__button-like');
 
 const likeActive = function() {
     btnLike.classList.toggle('like__active');
     console.log('hi');
 }
 
-btnLike.addEventListener('click', likeActive);
+btnLike.addEventListener('click', likeActive);*/
 
 // open popup code
 const togglePopup = function () {
