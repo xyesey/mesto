@@ -1,7 +1,7 @@
 // Open and close popup
 
 const popup = document.querySelector('.popup');
-const btnEdit = document.querySelector('.profile__info-edit__buttom');
+const btnEdit = document.querySelector('.profile__edit-button');
 const btnClose = popup.querySelector('.popup__close-button');
 
 // Popup save value form
