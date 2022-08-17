@@ -1,0 +1,6 @@
+.element__position {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 21px 0 15px;
+}

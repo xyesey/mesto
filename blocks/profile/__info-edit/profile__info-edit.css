@@ -1,0 +1,5 @@
+.profile__info-edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
