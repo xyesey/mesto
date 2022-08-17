@@ -2,14 +2,15 @@
   max-width: 32px;
   max-height: 32px;
   position: absolute;
-  right: 195px;
-  top: 155px;
+  right: 390px;
+  top: 345px;
   cursor: pointer;
 }
 
 .popup__close-button:hover {
   opacity: 0.6;
 }
+
 
 @media screen and (max-width: 320px) {
   .popup__close-button {
