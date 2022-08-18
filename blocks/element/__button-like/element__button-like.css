@@ -11,10 +11,6 @@
   flex-shrink: 0;
 }
 
-.element__button-like.like__active {
-  background-image: url(../../../image/likeActive.svg);
-}
-
 .element__button-like:hover {
   opacity: 0.5;
 }

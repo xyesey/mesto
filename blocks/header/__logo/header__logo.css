@@ -1,5 +1,6 @@
 .header__logo {
   width: 142px;
+  height: 33px;
   margin: 45px 0 41px 0;
   object-fit: contain;
 }
@@ -8,5 +9,6 @@
   .header__logo {
     margin: 28px 0 32px 27px;
     width: 104px;
+    height: 25px;
   }
 }

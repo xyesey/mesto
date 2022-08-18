@@ -1,6 +1,6 @@
 .profile__edit-button {
   background-image: url(../../../image/buttonEdit.svg);
-  background-color: #000;
+  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   box-sizing: border-box;
@@ -16,15 +16,10 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 720px) {
-  .profile__edit-button {
-    margin-top: 11px;
-  }
-}
-
 @media screen and (max-width: 320px) {
   .profile__edit-button {
-    max-width: 18px;
-    margin: 0;
+    width: 18px;
+    height: 18px;
+    margin: 11px 0 0 0;
   }
 }

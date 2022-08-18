@@ -4,24 +4,25 @@
   line-height: 22px;
   color: #fff;
   grid-area: subtitle;
-  margin: 16px 0 0 0;
+  margin: 16px auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: start;
+  width: 336px;
 }
 
 @media screen and (max-width: 720px) {
   .profile__info-subtitle {
     line-height: 17px;
     font-size: 14px;
-    margin: 0 0 36px 0;
   }
 }
 
 @media screen and (max-width: 320px) {
   .profile__info-subtitle {
-    margin: 0 0 26px 0;
+    margin:0 0 36px 0;
     text-align: center;
+    width: 282px;
   }
 }

@@ -16,7 +16,7 @@ const btnSave = popup.querySelector('.popup__save-button');
 // open popup code
 const togglePopup = function () {
     popupValue()
-    popup.classList.toggle('popup__open');
+    popup.classList.toggle('popup_opened');
 }
 
 btnEdit.addEventListener('click', togglePopup);

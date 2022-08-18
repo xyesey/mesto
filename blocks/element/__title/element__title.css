@@ -7,4 +7,5 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   flex-shrink: 3;
+  margin: 25px 0 31px 0;
 }
