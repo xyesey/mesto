@@ -13,32 +13,6 @@ let popupName = document.querySelector('.profile__info-title');
 let popupJob = document.querySelector('.profile__info-subtitle');
 const btnSave = popup.querySelector('.popup__save-button');
 
-// Button like active 
-
-/*const btnLike = document.querySelectorAll('.element__button-like');
-
-function likeActive(e) {
-    btnLike.e.target.classList.toggle('like__active');
-}
-btnLike.addEventListener('click', likeActive);*/
-
-/*const btnsLike = document.querySelectorAll('.element__button-like');
-
-btnsLike.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-        console.log('button clicked' + e.target.classList);
-    })
-})*/
-
-/*const btnLike = document.querySelectorAll('.element__button-like');
-
-const likeActive = function() {
-    btnLike.classList.toggle('like__active');
-    console.log('hi');
-}
-
-btnLike.addEventListener('click', likeActive);*/
-
 // open popup code
 const togglePopup = function () {
     popupValue()

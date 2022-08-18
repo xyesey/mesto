@@ -6,14 +6,14 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 900px) {
   .elements {
     grid-template-rows: repeat(3, 361px);
     grid-template-columns: repeat(2, 282px);
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 593px) {
   .elements {
     grid-template-rows: repeat(6, 361px);
     grid-template-columns: repeat(1, 282px);

@@ -7,6 +7,8 @@
   background-repeat: no-repeat;
   align-self: center;
   border: none;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .element__button-like.like__active {
