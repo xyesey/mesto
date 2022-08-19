@@ -3,26 +3,22 @@
   font-weight: 500;
   line-height: 48px;
   max-width: 310px;
-  color: #ffff;
+  color: #fff;
   grid-area: title;
-  margin: 0 auto;
   text-align: start;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 880px) {
   .profile__info-title {
+    width: 190px;
+    text-align: center;
+    margin: 0 18px 0 0;
     font-size: 27px;
     line-height: 33px;
-    margin: 23px 10px 14px 0;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .profile__info-title {
-    margin: 20px 10px 10px 10px;
-    width: 190px;
   }
 }
