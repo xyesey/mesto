@@ -4,7 +4,7 @@
   line-height: 22px;
   color: #fff;
   grid-area: subtitle;
-  margin: 16px auto;
+  margin: 16px 0 0 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -16,7 +16,7 @@
   .profile__info-subtitle {
     margin:0 0 36px 0;
     text-align: center;
-    width: 280px;
+    max-width: 100%;
     font-size: 14px;
     line-height: 17px;
   }

@@ -6,6 +6,12 @@
 @media screen and (max-width: 880px) {
   .profile__info-edit {
     justify-content: center;
-    margin: 20px 0 10px 38px;
+    margin: 20px 0 10px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__info-edit {
+    margin: 24px 0 10px 0
   }
 }
