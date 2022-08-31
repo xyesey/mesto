@@ -23,7 +23,8 @@
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
+          <button class="element__btn-delete" type=></button>
           <img src="./image/karachaevsk.jpg" class="element__image" alt="Крачаевск">
           <div class="element__position">
             <h2 class="element__title">Карачаевск</h2>
@@ -64,18 +65,18 @@
               <h2 class="element__title">Карачаево-Черкесия</h2>
               <button type="button" class="element__button-like"></button>
             </div>
-        </div>  
+        </div>   -->
       </section>
     </main> 
     <footer class="footer">
       <p class="footer__author">&copy; 2022 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup-edit">
       <div class="popup__body">
         <div class="popup__content">
-          <button type="button" class="popup__close-button"></button>
+          <button type="button" class="popup__close-button editBtn"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form id="form" class="popup__form" name="form">
+          <form id="formEdit" class="popup__form" name="form">
             <input type="text" name="name" value="Жак-Ив Кусто" id="nameInput" class="popup__name-work">
             <input type="text" name="work" value="Исследователь океана" id="jobInput" class="popup__name-work">
             <button type="submit" class="popup__save-button">Сохранить</button>
@@ -83,6 +84,41 @@
         </div>
       </div>
     </section>
+    <section class="popup popup-added">
+      <div class="popup__body">
+        <div class="popup__content">
+          <button type="button" class="popup__close-button addedBtn"></button>
+          <h3 class="popup__title">Новое место</h3>
+          <form id="formAdded" class="popup__form" name="form">
+            <input type="text" name="place" placeholder="Название" id="placeInput" class="popup__place-picture">
+            <input type="text" name="link" placeholder="Ссылка на картинку" id="linkInput" class="popup__place-picture">
+            <button type="submit" class="popup__save-button">Создать</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="popup popup-photo">
+      <div class="popup__body">
+        <div class="popup__content-photo">
+          <button type="button" class="popup__close-button_photo"></button>
+          <figure class="popup__figure-content">
+            <img class="popup__image" src="#" alt="">
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+   <template id="template" class="template">
+    <article class="element">
+      <button class="element__btn-delete" type=></button>
+      <img src="#" class="element__image" alt="Фото">
+      <div class="element__position">
+        <h2 class="element__title"></h2>
+          <button type="button" class="element__button-like"></button>
+      </div>
+    </article>
+   </template>    
    <script src="scripts/scripts.js"></script>
+   <script src="scripts/cardElements.js"></script>
 </body> 
 </html>

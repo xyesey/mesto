@@ -6,4 +6,6 @@
   top: 0;
   left: 0;
   visibility: hidden;
+  opacity: 0;
+  transition: visibility, opacity 0.5s linear;
 }

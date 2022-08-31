@@ -1,27 +1,51 @@
-// Open and close popup
+
+// Popups
 
 const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup-edit');
+const popupAdded = document.querySelector('.popup-added');
+
+// Buttons
+
+const btnCloseAdded = popupAdded.querySelector('.popup__close-button');
+const btnCloseEdit = popupEdit.querySelector('.popup__close-button');
 const btnEdit = document.querySelector('.profile__edit-button');
-const btnClose = popup.querySelector('.popup__close-button');
+const btnAdd = document.querySelector('.profile__add-button');
+const btnSave = popup.querySelector('.editBtn');
 
 // Popup save value form
 
-let formElement = document.querySelector('#form');
-let nameInput = formElement.querySelector('#nameInput');
-let jobInput = formElement.querySelector('#jobInput');
-let popupName = document.querySelector('.profile__info-title');
-let popupJob = document.querySelector('.profile__info-subtitle');
-const btnSave = popup.querySelector('.popup__save-button');
+const formElementEdit = document.querySelector('#formEdit');
+const nameInput = formElementEdit.querySelector('#nameInput');
+const jobInput = formElementEdit.querySelector('#jobInput');
+const popupName = document.querySelector('.profile__info-title');
+const popupJob = document.querySelector('.profile__info-subtitle');
 
-// open popup code
-const togglePopup = function () {
-    popupValue()
-    popup.classList.toggle('popup_opened');
+
+// buttons 
+const togglePopup = function (popupElement) {
+    popupElement.classList.toggle('popup_opened');
 }
 
-btnEdit.addEventListener('click', togglePopup);
-btnClose.addEventListener('click', togglePopup);
-btnSave.addEventListener('click', togglePopup);
+btnEdit.addEventListener('click', function () {
+    togglePopup(popupEdit);
+});
+btnCloseEdit.addEventListener('click', function () {
+    popupEdit.classList.toggle('popup_opened');
+});
+
+btnCloseAdded.addEventListener('click', function () {
+    popupAdded.classList.toggle('popup_opened');
+})
+
+
+btnSave.addEventListener('click', function () {
+    popupValue();
+});
+btnAdd.addEventListener('click', function () {
+    togglePopup(popupAdded);
+});
+
 
 // save form code
 
@@ -34,7 +58,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     popupName.textContent = nameInput.value;
     popupJob.textContent = jobInput.value;
-    togglePopup;
+    togglePopup(popupEdit);
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+formElementEdit.addEventListener('submit', formSubmitHandler);
