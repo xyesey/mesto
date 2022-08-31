@@ -35,7 +35,7 @@ const templateElement = document.querySelector('.template');
 const popupConteinerPhoto = document.querySelector('.popup-photo');
 const popupPhoto = popupConteinerPhoto.querySelector('.popup__image');
 const popupCaption = popupConteinerPhoto.querySelector('.popup__caption');
-const btnClosePhoto = popupConteinerPhoto.querySelector('.popup__close-button_photo');
+const btnClosePhoto = popupConteinerPhoto.querySelector('.popup__close-button__photo');
 
 
 function createCardHadler(e) {

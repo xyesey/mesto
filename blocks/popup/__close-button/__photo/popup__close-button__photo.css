@@ -1,4 +1,4 @@
-.popup__close-button_photo {
+.popup__close-button__photo {
   width: 32px;
   height: 32px;
   position: absolute;
@@ -12,12 +12,12 @@
   border: none;
 }
 
-.popup__close-button_photo:hover {
+.popup__close-button__photo:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 450px) {
-  .popup__close-button_photo {
+  .popup__close-button__photo {
     width: 20px;
     height: 20px;
     top: -10px;
