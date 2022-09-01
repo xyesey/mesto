@@ -1,25 +1,23 @@
 
 // Popups
 
-const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
-const popupAdded = document.querySelector('.popup-added');
+const popupAdd = document.querySelector('.popup-added');
 
 // Buttons
 
-const btnCloseAdded = popupAdded.querySelector('.popup__close-button');
+const btnCloseAdd = popupAdd.querySelector('.popup__close-button');
 const btnCloseEdit = popupEdit.querySelector('.popup__close-button');
 const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
-const btnSave = popup.querySelector('.editBtn');
 
 // Popup save value form
 
 const formElementEdit = document.querySelector('#formEdit');
 const nameInput = formElementEdit.querySelector('#nameInput');
 const jobInput = formElementEdit.querySelector('#jobInput');
-const popupName = document.querySelector('.profile__info-title');
-const popupJob = document.querySelector('.profile__info-subtitle');
+const name = document.querySelector('.profile__info-title');
+const jobProfile = document.querySelector('.profile__info-subtitle');
 
 
 // buttons 
@@ -28,37 +26,34 @@ const togglePopup = function (popupElement) {
 }
 
 btnEdit.addEventListener('click', function () {
+    fillPopupEditInputs();
     togglePopup(popupEdit);
 });
 btnCloseEdit.addEventListener('click', function () {
-    popupEdit.classList.toggle('popup_opened');
+   togglePopup(popupEdit);
 });
 
-btnCloseAdded.addEventListener('click', function () {
-    popupAdded.classList.toggle('popup_opened');
+btnCloseAdd.addEventListener('click', function () {
+    togglePopup(popupAdd);
 })
 
-
-btnSave.addEventListener('click', function () {
-    popupValue();
-});
 btnAdd.addEventListener('click', function () {
-    togglePopup(popupAdded);
+    togglePopup(popupAdd);
 });
 
 
 // save form code
 
-function popupValue() {
-    nameInput.setAttribute('value', popupName.textContent);
-    jobInput.setAttribute('value', popupJob.textContent);
+function fillPopupEditInputs() {
+    nameInput.setAttribute('value', name.textContent);
+    jobInput.setAttribute('value', jobProfile.textContent);
   }
 
-function formSubmitHandler (evt) {
+function editPopupFormHandler (evt) {
     evt.preventDefault();
-    popupName.textContent = nameInput.value;
-    popupJob.textContent = jobInput.value;
+    name.textContent = nameInput.value;
+    jobProfile.textContent = jobInput.value;
     togglePopup(popupEdit);
 }
 
-formElementEdit.addEventListener('submit', formSubmitHandler);
+formElementEdit.addEventListener('submit', editPopupFormHandler);
