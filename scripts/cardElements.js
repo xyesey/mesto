@@ -53,7 +53,7 @@ function createCardHadler(e) {
   }
   
   listElement.prepend(createCard(objectElement));
-  togglePopup(popupAdded)
+  closePopup(popupAdd)
 }
 
 function handleDelete(e) {
@@ -67,16 +67,16 @@ function handleLike(e) {
 }
 
 function popupPhotoHandle(e, link, name) {
-  togglePopup(popupConteinerPhoto);
+  openPopup(popupConteinerPhoto);
   popupPhoto.src = link;
   popupCaption.textContent = name;
 }
 btnClosePhoto.addEventListener('click', function () {
-  togglePopup(popupConteinerPhoto);
+  closePopup(popupConteinerPhoto);
 })
 
 function createCard(object) {
-  const newCardElement = templateElement.content.firstElementChild.cloneNode(true);
+  const newCardElement = document.querySelector('.template').content.cloneNode(true);
   const cardPhoto = newCardElement.querySelector('card__image');
   newCardElement.querySelector('.element__title').textContent = object.name;
   newCardElement.querySelector('.element__image').src = object.link;

@@ -21,24 +21,30 @@ const jobProfile = document.querySelector('.profile__info-subtitle');
 
 
 // buttons 
-const togglePopup = function (popupElement) {
-    popupElement.classList.toggle('popup_opened');
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
 }
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
 
 btnEdit.addEventListener('click', function () {
     fillPopupEditInputs();
-    togglePopup(popupEdit);
+    openPopup(popupEdit);
 });
 btnCloseEdit.addEventListener('click', function () {
-   togglePopup(popupEdit);
+   closePopup(popupEdit);
 });
 
 btnCloseAdd.addEventListener('click', function () {
-    togglePopup(popupAdd);
+    closePopup(popupAdd);
 })
 
 btnAdd.addEventListener('click', function () {
-    togglePopup(popupAdd);
+    openPopup(popupAdd);
 });
 
 
@@ -53,7 +59,7 @@ function editPopupFormHandler (evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
-    togglePopup(popupEdit);
+    closePopup(popupEdit);
 }
 
 formElementEdit.addEventListener('submit', editPopupFormHandler);
