@@ -5,7 +5,7 @@
   background-color: #000;
   border-radius: 2px;
   margin-bottom: 37px;
-  cursor: pointer;
+  opacity: 1;
 }
 
 .popup__save-button:hover {
