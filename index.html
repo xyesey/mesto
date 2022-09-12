@@ -37,8 +37,14 @@
           <button arial-label="Закрыть" type="button" class="popup__close-button"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
           <form id="formEdit" class="popup__form" name="form">
-            <input required type="text" name="name" value="Жак-Ив Кусто" id="nameInput" class="popup__name-work" minlength="2" maxlength="40">
-            <input required type="text" name="work" value="Исследователь океана" id="jobInput" class="popup__name-work" minlength="2" maxlength="200">
+            <labe>
+              <input required type="text" name="name" value="Жак-Ив Кусто" id="nameInput" class="popup__name-work popup__input" minlength="2" maxlength="40">
+              <span id="nameInput-error" class="popup__error">Вы пропустили это поле.</span>
+            </labe>
+            <label>
+              <input required type="text" name="work" value="Исследователь океана" id="jobInput" class="popup__name-work popup__input" minlength="2" maxlength="200">
+              <span id="jobInput-error" class="popup__error">Вы пропустили это поле.</span>
+            </label>
             <button type="submit" class="popup__save-button">Сохранить</button>
           </form>
         </div>

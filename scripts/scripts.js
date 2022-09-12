@@ -1,6 +1,6 @@
 
 // Popups
-
+const popupList = document.querySelectorAll('popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-added');
 
@@ -20,16 +20,36 @@ const name = document.querySelector('.profile__info-title');
 const jobProfile = document.querySelector('.profile__info-subtitle');
 
 
-// buttons 
+// functiom close popup
+
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupOnEsc);
+    popup.addEventListener('click', closePopupOnClick);
 }
 
 function closePopup(popup) {
+    popup.removeEventListener('click', closePopupOnClick);
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupOnEsc);
 }
 
+function closePopupOnEsc(evt) {
+    if (evt.key === 'Escape') {
+        const opened = document.querySelector('.popup_opened');
+        closePopup(opened)
+    }
+}
+
+function closePopupOnClick(evt) {
+    if (!evt.target.closest('.popup__content')) {
+        closePopup(evt.target.closest('.popup'));
+    }
+
+}
+
+// buttons
 
 btnEdit.addEventListener('click', function () {
     fillPopupEditInputs();

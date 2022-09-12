@@ -2,8 +2,10 @@
     font-size:  12px;
     line-height: 14px;
     color: #ff0000;
-    display: none;
-    margin: 4px 0 0 6px;
+    display: block;
+    margin: 0;
     box-sizing: border-box;
-    height: 25px;
+    margin: 6px 0 0 0;
+    min-height: 28px;
+    opacity: 0;
 }
