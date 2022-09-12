@@ -69,6 +69,7 @@ function handleLike(e) {
 function popupPhotoHandle(e, link, name) {
   openPopup(popupConteinerPhoto);
   popupPhoto.src = link;
+  popupPhoto.alt = name;
   popupCaption.textContent = name;
 }
 btnClosePhoto.addEventListener('click', function () {

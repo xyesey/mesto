@@ -46,40 +46,24 @@ function deleteInactiveBtn (button) {
     button.classList.remove(validationConfig.inactiveButtonClass);
 }
 
-function setButtonState (inputs, button) {
+function setButtonState (inputs, button, config) {
     if (hasInvalidInput(inputs)) {
-        setInactiveBtn(button)
+        setInactiveBtn(button, config)
     } else {
-        deleteInactiveBtn(button)
+        deleteInactiveBtn(button, config)
     }
 }
 
-function resetValidationForm(form) {
-    form.reset();
-}
-
-function resetValidationError(errorList, inputList, config) {
+function resetFormValidation(form) {
+    const errorList = Array.from(form.querySelectorAll(validationConfig.errorSelector));
     errorList.forEach((error) => {
-        error.textContent = "";
-    });
+        hideError(error);
+    })
 
+    const inputList = form.querySelectorAll(validationConfig.inputSelector);
     inputList.forEach((input) => {
-        input.classList.remove(config.inputErrorClass);;
-    });
-}
-
-function resetFormValidation(popupList, config) {
-    const btnSubmit = popupList.querySelector(config.submitButtonSelector);
-    const forms = popupList.querySelector(config.formSelector);
-
-    if (popupList.querySelector(config.formSelector)) {
-        const errorList = Array.from(forms.querySelectorAll('.popup__error'));
-        const inputList = Array.from(forms.querySelectorAll(config.inputSelector));
-        
-        resetValidationError(errorList, inputList, config);
-        resetValidationForm(forms);
-        setButtonState(inputList, btnSubmit, config.inactiveButtonClass);
-    }
+        hideError(input);
+    })
 };
 
 function setHendlers(form, config) {
@@ -100,9 +84,6 @@ function enableValidation(config) {
     const forms = Array.from(document.querySelectorAll(config.formSelector));
 
     forms.forEach((form) => {
-        form.addEventListener('submit', (evt) => {
-            evt.preventDefault()
-        });
         setHendlers(form, config);
     });
 }

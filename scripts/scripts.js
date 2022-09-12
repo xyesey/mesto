@@ -44,7 +44,7 @@ function closePopupOnEsc(evt) {
 
 function closePopupOnClick(evt) {
     if (!evt.target.closest('.popup__content')) {
-        closePopup(evt.target.closest('.popup'));
+        closePopup(evt.currentTarget);
     }
 
 }
@@ -54,6 +54,8 @@ function closePopupOnClick(evt) {
 btnEdit.addEventListener('click', function () {
     fillPopupEditInputs();
     openPopup(popupEdit);
+    resetFormValidation(popupEdit, validationConfig);
+    deleteInactiveBtn(btnEdit, validationConfig);
 });
 btnCloseEdit.addEventListener('click', function () {
    closePopup(popupEdit);
@@ -65,14 +67,16 @@ btnCloseAdd.addEventListener('click', function () {
 
 btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
+    resetFormValidation(popupAdd, validationConfig);
+    setInactiveBtn(btnAdd, validationConfig);
 });
 
 
 // save form code
 
 function fillPopupEditInputs() {
-    nameInput.setAttribute('value', name.textContent);
-    jobInput.setAttribute('value', jobProfile.textContent);
+    nameInput.value = name.textContent
+    jobInput.value = jobProfile.textContent
   }
 
 function editPopupFormHandler (evt) {
