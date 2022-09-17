@@ -10,6 +10,7 @@ const btnCloseAdd = popupAdd.querySelector('.popup__close-button');
 const btnCloseEdit = popupEdit.querySelector('.popup__close-button');
 const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
+const btnCreate = document.querySelector('.createBtn');
 
 // Popup save value form
 
@@ -54,7 +55,7 @@ function closePopupOnClick(evt) {
 btnEdit.addEventListener('click', function () {
     fillPopupEditInputs();
     openPopup(popupEdit);
-    resetFormValidation(popupEdit, validationConfig);
+    resetValidationError(popupEdit, validationConfig);
     deleteInactiveBtn(btnEdit, validationConfig);
 });
 btnCloseEdit.addEventListener('click', function () {
@@ -67,8 +68,8 @@ btnCloseAdd.addEventListener('click', function () {
 
 btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
-    resetFormValidation(popupAdd, validationConfig);
-    setInactiveBtn(btnAdd, validationConfig);
+    resetValidationError(popupAdd, validationConfig);
+    setInactiveBtn(btnCreate, validationConfig);
 });
 
 

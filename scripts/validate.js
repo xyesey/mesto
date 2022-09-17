@@ -36,14 +36,14 @@ function hasInvalidInput(inputs) {
     })
 }
 
-function setInactiveBtn (button) {
+function setInactiveBtn (button, config) {
     button.setAttribute('disabled', 'disabled');
-    button.classList.add(validationConfig.inactiveButtonClass);
+    button.classList.add(config.inactiveButtonClass);
 }
 
-function deleteInactiveBtn (button) {
+function deleteInactiveBtn (button, config) {
     button.removeAttribute('disabled');
-    button.classList.remove(validationConfig.inactiveButtonClass);
+    button.classList.remove(config.inactiveButtonClass);
 }
 
 function setButtonState (inputs, button, config) {
@@ -54,17 +54,11 @@ function setButtonState (inputs, button, config) {
     }
 }
 
-function resetFormValidation(form) {
-    const errorList = Array.from(form.querySelectorAll(validationConfig.errorSelector));
-    errorList.forEach((error) => {
-        hideError(error);
-    })
-
-    const inputList = form.querySelectorAll(validationConfig.inputSelector);
-    inputList.forEach((input) => {
-        hideError(input);
-    })
-};
+function resetValidationError(form, inputList, config) { 
+    inputList.forEach((input) => { 
+        hideError(form, input, config); 
+    }); 
+} 
 
 function setHendlers(form, config) {
     const inputs = Array.from(form.querySelectorAll(config.inputSelector));
