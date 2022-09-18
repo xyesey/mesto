@@ -54,7 +54,8 @@ function setButtonState (inputs, button, config) {
     }
 }
 
-function resetValidationError(form, inputList, config) { 
+function resetValidationError(form, config) { 
+    const inputList = Array.from(form.querySelectorAll(config.inputSelector));
     inputList.forEach((input) => { 
         hideError(form, input, config); 
     }); 

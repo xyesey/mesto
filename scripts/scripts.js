@@ -20,7 +20,6 @@ const jobInput = formElementEdit.querySelector('#jobInput');
 const name = document.querySelector('.profile__info-title');
 const jobProfile = document.querySelector('.profile__info-subtitle');
 
-
 // functiom close popup
 
 
@@ -68,6 +67,8 @@ btnCloseAdd.addEventListener('click', function () {
 
 btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
+    placeInput.value = '';
+    linkInput.value = '';
     resetValidationError(popupAdd, validationConfig);
     setInactiveBtn(btnCreate, validationConfig);
 });
