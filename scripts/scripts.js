@@ -1,27 +1,86 @@
+import { Card } from './card.js';
+import { FormValidate } from './formValidator.js';
+
+const initialCards = [
+    {
+      name: '2004',
+      image: 'https://hiphop4real.com/wp-content/uploads/2019/12/0rk8r5vth8u.jpg'
+    },
+    {
+      name: 'STAY UGLY',
+      image: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01eebf94798727.5e98d49aa164d.jpg'
+    },
+    {
+      name: 'Кривой Эфир',
+      image: 'https://avatars.yandex.net/get-music-content/99892/c3f59bcb.a.9378276-1/m1000x1000?webp=false'
+    },
+    {
+      name: 'NO BANG! HOLD ON!',
+      image: 'https://avatars.yandex.net/get-music-content/6447985/e607cdd9.a.22059674-1/m1000x1000?webp=false'
+    },
+    {
+      name: 'ОПГ Сити',
+      image: 'https://lastfm.freetls.fastly.net/i/u/ar0/7e5ef83884af67ff43123822c132866b.jpg'
+    },
+    {
+      name: 'First Day Out',
+      image: 'https://i.ytimg.com/vi/M1IsBbw0_mU/maxresdefault.jpg?7857057827'
+    }
+];
+
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+    errorSelector: 'popup__error'
+};
 
 // Popups
 const popupList = document.querySelectorAll('popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-added');
-
 // Buttons
-
 const btnCloseAdd = popupAdd.querySelector('.popup__close-button');
 const btnCloseEdit = popupEdit.querySelector('.popup__close-button');
 const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
 const btnCreate = document.querySelector('.createBtn');
-
 // Popup save value form
-
 const formElementEdit = document.querySelector('#formEdit');
 const nameInput = formElementEdit.querySelector('#nameInput');
 const jobInput = formElementEdit.querySelector('#jobInput');
 const name = document.querySelector('.profile__info-title');
 const jobProfile = document.querySelector('.profile__info-subtitle');
+//Cards
+const popupConteinerPhoto = document.querySelector('.popup-photo')
+const popupImage = document.querySelector('.popup__image');
+const btnCloseImage = document.querySelector('.popup__close-button');
+const popupCaption = document.querySelector('.popup__caption');
+const formElementAdd = document.querySelector('#formAdded')
+const placeInput = document.querySelector('#placeInput');
+const linkInput = document.querySelector('#linkInput');
 
-// functiom close popup
+function createCardHadler(data) {
+    const newCard = new Card(data.name, data.image, openPopup);
+    return newCard
+}
 
+initialCards.forEach((item) => {
+    const card = new Card(item);
+    const cardElement = card.createCard();
+
+    document.querySelector('.elements').append(cardElement);
+})
+
+function handleOpenCard(name,link) {
+    openPopup(popupConteinerPhoto);
+    popupPhoto.src = link;
+    popupPhoto.alt = name;
+    popupCaption.textContent = name;
+}
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -54,8 +113,8 @@ function closePopupOnClick(evt) {
 btnEdit.addEventListener('click', function () {
     fillPopupEditInputs();
     openPopup(popupEdit);
-    resetValidationError(popupEdit, validationConfig);
-    deleteInactiveBtn(btnEdit, validationConfig);
+    removeValidation(popupEdit, validationConfig);
+    toggleSubmitBtn(btnEdit, validationConfig);
 });
 btnCloseEdit.addEventListener('click', function () {
    closePopup(popupEdit);
@@ -69,8 +128,8 @@ btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
     placeInput.value = '';
     linkInput.value = '';
-    resetValidationError(popupAdd, validationConfig);
-    setInactiveBtn(btnCreate, validationConfig);
+    removeValidation(popupAdd, validationConfig);
+    toggleSubmitBtn(btnCreate, validationConfig);
 });
 
 
@@ -89,3 +148,11 @@ function editPopupFormHandler (evt) {
 }
 
 formElementEdit.addEventListener('submit', editPopupFormHandler);
+formElementAdd.addEventListener('submit', createCardHadler);
+
+const newCardValidation = new FormValidate(formElementAdd, validationConfig);
+newCardValidation.FormValidate();
+
+const formEditValidation = new FormValidate(formElementEdit, validationConfig);
+formEditValidation.FormValidate();
+
