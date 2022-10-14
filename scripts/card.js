@@ -18,17 +18,17 @@ export class Card {
     }
 
     _handleOpenPopup() {
-        openPopup(popupConteinerPhoto);
+        this._handleOpenCards(this._image, this._name);
         popupImage.src = this._image;
         popupImage.alt = this._name;
         popupCaption.textContent = this._name;
         
     }
 
-    _handleClosePopup() {
-        popupImage.src = this._image;
-        popupConteinerPhoto.classList.remove('.popup_opened');
-    }
+    // _handleClosePopup() {
+    //     popupImage.src = this._image;
+    //     popupConteinerPhoto.classList.remove('.popup_opened');
+    // }
 
     _likeHandle() {
         this._likeBtn.classList.toggle(`element__button-like_active`);
@@ -50,73 +50,12 @@ export class Card {
 
     createCard() {
         this._element = this._getTemplate();
+        this._photo = this._element.querySelector('.element__image').src = this._image;
+        this._photoName = this._element.querySelector('.element__title').textContent = this._name
         this._setEventListeners();
-
-        this._element.querySelector('.element__image').src = this._image;
-        this._element.querySelector('.element__title').textContent = this._name;
 
         return this._element;
     }
-
-    // _handleOpenPopup() {
-    //     openPopup(popupConteinerPhoto);
-    //     popupImage.src = this._image;
-    //     popupImage.alt = this._name;
-    //     popupCaption.textContent = this._name;
-        
-    // }
-
-    // _handleClosePopup() {
-    //     popupImage.src = this._image;
-    //     popupConteinerPhoto.classList.remove('.popup_opened');
-    // }
-
-    // _handleLike() {
-    //     this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active')
-    // }
-
-    // _handleDelete() {
-    //     this._element.querySelector('.element');
-    //     this._element.remove()
-    // }
-
-    // _setEventListeners() {
-    //     this._element.addEventListener('click', () => {
-    //         this._handleOpenPopup()
-    //     });
-
-    //     btnCloseImage.addEventListener('click', () => {
-    //         this._handleClosePopup()
-    //     })
-
-    //     this._element.querySelector('.element__button-like').addEventListener('click', () => {
-    //         this._handleLike();
-    //     })
-
-    //     this._element.querySelector('.element__btn-delete').addEventListener('click', () => {
-    //         this._handleDelete();
-    //     })
-    // }
-
-    // _getTemplate() {
-    //     const cardElement = document
-    //     .querySelector('.template')
-    //     .content
-    //     .querySelector('.element')
-    //     .cloneNode(true);
-
-    //     return cardElement
-    // }
-
-    // createCard() {
-    //     this._element = this._getTemplate();
-    //     this._setEventListeners()
-
-    //     this._element.querySelector('.element__image').src = this._image;
-    //     this._element.querySelector('.element__title').textContent = this._name;
-
-    //     return this._element
-    // }
 }
 
 
