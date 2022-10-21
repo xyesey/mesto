@@ -65,6 +65,7 @@ const placeInput = document.querySelector('#placeInput');
 const linkInput = document.querySelector('#linkInput');
 const templateElement = document.querySelector('.template')
 
+// Function for render and create cards in class
 
 function createCardHadler(data) {
     const newCard = new Card(data,templateElement, handleOpenCard);
@@ -101,6 +102,8 @@ function handleOpenCard(name,link) {
     openPopup(popupConteinerPhoto);
 }
 
+// Funtion for open and close popup
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupOnEsc);
@@ -127,6 +130,8 @@ function closePopupOnClick(evt) {
 
 }
 
+// Listeners for buttons
+
 btnEdit.addEventListener('click', function () {
     openPopup(popupEdit);
     nameInput.value = name.textContent
@@ -146,7 +151,7 @@ btnAdd.addEventListener('click', function () {
     linkInput.value = '';
 });
 
-// save form code
+// Function for Falidate all Forms
 
 function editPopupFormHandler (evt) {
     evt.preventDefault();
