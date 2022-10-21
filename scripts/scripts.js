@@ -67,7 +67,7 @@ const templateElement = document.querySelector('.template')
 
 
 function createCardHadler(data) {
-    const newCard = new Card(data,templateElement, openPopup);
+    const newCard = new Card(data,templateElement, handleOpenCard);
     return newCard.createCard();
 }
 
@@ -95,10 +95,10 @@ formElementAdd.addEventListener('submit', (e) => {
 })
 
 function handleOpenCard(name,link) {
-    openPopup(popupConteinerPhoto);
-    popupPhoto.src = link;
-    popupPhoto.alt = name;
+    popupImage.src = link;
+    popupImage.alt = name;
     popupCaption.textContent = name;
+    openPopup(popupConteinerPhoto);
 }
 
 function openPopup(popup) {
