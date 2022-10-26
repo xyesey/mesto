@@ -22,7 +22,7 @@ export class Card {
     }
 
     _deletImageHandle() {
-        this._element.closest('.element').remove();
+        this._element.remove();
         this._element = null;
     }
 
@@ -39,8 +39,11 @@ export class Card {
 
     createCard() {
         this._element = this._getTemplate();
-        this._photo = this._element.querySelector('.element__image').src = this._image;
-        this._photoName = this._element.querySelector('.element__title').textContent = this._name
+        this._photo = this._element.querySelector('.element__image');
+        this._photoName = this._element.querySelector('.element__title');
+        this._photo.src = this._image;
+        this._photo.alt = this._name;
+        this._photoName.textContent = this._name
         this._setEventListeners();
 
         return this._element;

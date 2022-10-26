@@ -23,7 +23,7 @@ export class FormValidate {
     }
 
     _checkValidation(input) {
-        this._error = this._form.querySelector(`#${input.id}-error`);
+        this._error = document.querySelector(`#${input.id}-error`);
 
         if (!input.validity.valid) {
             this._showError(input)
@@ -32,14 +32,15 @@ export class FormValidate {
         }
     };
 
-    _invalidInput() {
+    _isInvalidInput() {
         return this._inputList.some((input) => {
             return !input.validity.valid;
         });
     }
 
-    setButton() {
-        if (this._invalidInput()) {
+    setButtonState() {
+       
+        if (this._isInvalidInput()) {
             this._button.classList.add(this._inactiveButtonClass);
             this._button.setAttribute('disabled', 'disabled')
         } else {
@@ -53,7 +54,7 @@ export class FormValidate {
         this._inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkValidation(input)
-                this.setButton();
+                this.setButtonState();
             })
         })
     }
@@ -63,7 +64,7 @@ export class FormValidate {
             if (input.validity.valid) {
                 this._hideError(input)
             }
-            this.setButton();
+            this.setButtonState();
         })
     }
 

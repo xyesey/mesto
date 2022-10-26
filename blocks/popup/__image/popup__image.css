@@ -1,4 +1,16 @@
 .popup__image {
   max-width: 75vw;
-  max-height: 55vw;
+  max-height: 35vw;
+}
+
+@media screen and (max-width: 900px) {
+  .popup__image {
+    max-height: 55vw;
+  }
+}
+
+@media screen and (max-width: 593px) {
+  .popup__image {
+    max-height: 65vw;
+  }
 }
