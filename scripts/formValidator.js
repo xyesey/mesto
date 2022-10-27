@@ -51,6 +51,8 @@ export class FormValidate {
 
 
     _setListeners() {
+        this._button
+        this.setButtonState()
         this._inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkValidation(input)

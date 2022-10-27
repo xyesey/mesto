@@ -120,8 +120,6 @@ btnCloseAdd.addEventListener('click', function () {
 
 btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
-    // btnCreate.setButtonState();
-    // Блин, не понимаю, почему не вешается функция на класс, пишет все время ошибку, остался только этот баг
     formElementAdd.reset();
 });
 
