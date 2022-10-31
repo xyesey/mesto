@@ -63,7 +63,6 @@ formElementAdd.addEventListener('submit', (e) => {
     }
     
     formElementAdd.reset();
-    validInput();
     cardElements.prepend(createCard(data));
     closePopup(popupAdd);
 })
