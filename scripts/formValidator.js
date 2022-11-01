@@ -38,14 +38,26 @@ export class FormValidate {
         });
     }
 
+    addDisabledButton() {
+        this._button.classList.add(this._inactiveButtonClass);
+        this._button.setAttribute('disabled', 'disabled')
+    }
+
+    removeDisabledButton() {
+        this._button.classList.remove(this._inactiveButtonClass);
+        this._button.removeAttribute('disabled');
+    }
+
     setButtonState() {
        
         if (this._isInvalidInput()) {
-            this._button.classList.add(this._inactiveButtonClass);
-            this._button.setAttribute('disabled', 'disabled')
+            // this._button.classList.add(this._inactiveButtonClass);
+            // this._button.setAttribute('disabled', 'disabled')
+            this.addDisabledButton();
         } else {
-            this._button.classList.remove(this._inactiveButtonClass);
-            this._button.removeAttribute('disabled');
+            // this._button.classList.remove(this._inactiveButtonClass);
+            // this._button.removeAttribute('disabled');
+            this.removeDisabledButton();
         }
     };
 

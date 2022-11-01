@@ -64,6 +64,8 @@ formElementAdd.addEventListener('submit', (e) => {
     
     formElementAdd.reset();
     cardElements.prepend(createCard(data));
+    // validCard.addDisabledButton();
+    // Немного запутался с разделением метода на два публичных. Но если здесь вызывать метод дизейбла, кнопка в принципе не будет работать. Но, каким то образом баг с активной кнопкой после добавления я убрал
     closePopup(popupAdd);
 })
 
@@ -120,6 +122,7 @@ btnCloseAdd.addEventListener('click', function () {
 btnAdd.addEventListener('click', function () {
     openPopup(popupAdd);
     formElementAdd.reset();
+    validCard.setButtonState();
 });
 
 // Function for Falidate all Forms
@@ -133,14 +136,11 @@ function editPopupFormHandler (evt) {
 
 formElementEdit.addEventListener('submit', editPopupFormHandler);
 
-function validInput() {
-    const validCard = new FormValidate(formElementAdd, validationConfig);
-    const validProfile = new FormValidate(formElementEdit, validationConfig);
 
-    validCard.enableValidation();
-    validProfile.enableValidation();
-}
+const validCard = new FormValidate(formElementAdd, validationConfig);
+const validProfile = new FormValidate(formElementEdit, validationConfig);
 
-validInput();
+validCard.enableValidation();
+validProfile.enableValidation();
 
 
