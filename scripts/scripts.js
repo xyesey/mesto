@@ -1,6 +1,11 @@
-import { Card } from './card.js';
-import { FormValidate } from './formValidator.js';
-import { initialCards } from './cardsData.js';
+import { Card } from './Card.js';
+import { FormValidate } from './FormValidator.js';
+import { initialCards } from './CardsData.js';
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -13,7 +18,7 @@ const validationConfig = {
 };
 
 // Popups
-const popupList = document.querySelectorAll('popup');
+const popupSelector = document.querySelectorAll('popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-added');
 // Buttons
@@ -41,18 +46,27 @@ const templateElement = document.querySelector('.template')
 
 // Function for render and create cards in class
 
+const renderCard = new Section({
+    items: initialCards, renderer: (item) => renderCard.addItem(createCard(item))
+}, cardElements);
+const userInfo = new UserInfo(name, jobProfile);
+const popupWithProfileForm = new PopupWithForm(popupEdit);
+const popupWithCardForm = new PopupWithForm(popupAdd);
+const validCard = new FormValidate(formElementAdd, validationConfig);
+const validProfile = new FormValidate(formElementEdit, validationConfig);
+const imagePopup = new PopupWithImage(popupConteinerPhoto);
+
+renderCard.rendererItems();
+userInfo.setUserInfo();
+validCard.enableValidation();
+validProfile.enableValidation();
+imagePopup.setEventListeners();
+popupWithProfileForm.setEventListeners();
+
 function createCard(data) {
-    const newCard = new Card(data,templateElement, handleOpenCard);
+    const newCard = new Card(data,templateElement, imagePopup.open(popupConteinerPhoto));
     return newCard.createCard();
 }
-
-function renderCards() {
-    initialCards.forEach((item) => {
-        cardElements.append(createCard(item));
-    });
-}
-
-renderCards();
 
 formElementAdd.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -64,83 +78,54 @@ formElementAdd.addEventListener('submit', (e) => {
     
     formElementAdd.reset();
     cardElements.prepend(createCard(data));
-    // validCard.addDisabledButton();
-    // Немного запутался с разделением метода на два публичных. Но если здесь вызывать метод дизейбла, кнопка в принципе не будет работать. Но, каким то образом баг с активной кнопкой после добавления я убрал
     closePopup(popupAdd);
 })
 
-function handleOpenCard(name,link) {
-    popupImage.src = link;
-    popupImage.alt = name;
-    popupCaption.textContent = name;
-    openPopup(popupConteinerPhoto);
+function handleOpenCard(name, link) {
+    // popupImage.src = link;
+    // popupImage.alt = name;
+    // popupCaption.textContent = name;
+    imagePopup.open()
 }
 
-// Funtion for open and close popup
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', closePopupOnEsc);
-    popup.addEventListener('click', closePopupOnClick);
+function openEditPopup() {
+    popupWithProfileForm.open();
 }
 
-function closePopup(popup) {
-    popup.removeEventListener('click', closePopupOnClick);
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupOnEsc);
-}
-
-function closePopupOnEsc(evt) {
-    if (evt.key === 'Escape') {
-        const opened = document.querySelector('.popup_opened');
-        closePopup(opened)
-    }
-}
-
-function closePopupOnClick(evt) {
-    if (!evt.target.closest('.popup__content')) {
-        closePopup(evt.currentTarget);
-    }
-
+function openCardPopup() {
+    popupWithCardForm.open();
 }
 
 // Listeners for buttons
 
 btnEdit.addEventListener('click', function () {
-    openPopup(popupEdit);
+    openEditPopup(popupEdit);
     nameInput.value = name.textContent
     jobInput.value = jobProfile.textContent
 });
-btnCloseEdit.addEventListener('click', function () {
-   closePopup(popupEdit);
-});
+// btnCloseEdit.addEventListener('click', function () {
+//    closePopup(popupEdit);
+// });
 
-btnCloseAdd.addEventListener('click', function () {
-    closePopup(popupAdd);
-})
+// btnCloseAdd.addEventListener('click', function () {
+//     closePopup(popupAdd);
+// })
 
 btnAdd.addEventListener('click', function () {
-    openPopup(popupAdd);
+    openCardPopup(popupAdd);
     formElementAdd.reset();
     validCard.setButtonState();
 });
 
 // Function for Falidate all Forms
 
-function editPopupFormHandler (evt) {
-    evt.preventDefault();
-    name.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    closePopup(popupEdit);
-}
+// function editPopupFormHandler (evt) {
+//     evt.preventDefault();
+//     name.textContent = nameInput.value;
+//     jobProfile.textContent = jobInput.value;
+//     closePopup(popupEdit);
+// }
 
-formElementEdit.addEventListener('submit', editPopupFormHandler);
-
-
-const validCard = new FormValidate(formElementAdd, validationConfig);
-const validProfile = new FormValidate(formElementEdit, validationConfig);
-
-validCard.enableValidation();
-validProfile.enableValidation();
+// formElementEdit.addEventListener('submit', editPopupFormHandler);
 
 

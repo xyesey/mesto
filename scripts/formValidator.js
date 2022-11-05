@@ -38,12 +38,12 @@ export class FormValidate {
         });
     }
 
-    addDisabledButton() {
+    _addDisabledButton() {
         this._button.classList.add(this._inactiveButtonClass);
         this._button.setAttribute('disabled', 'disabled')
     }
 
-    removeDisabledButton() {
+    _removeDisabledButton() {
         this._button.classList.remove(this._inactiveButtonClass);
         this._button.removeAttribute('disabled');
     }
@@ -51,13 +51,9 @@ export class FormValidate {
     setButtonState() {
        
         if (this._isInvalidInput()) {
-            // this._button.classList.add(this._inactiveButtonClass);
-            // this._button.setAttribute('disabled', 'disabled')
-            this.addDisabledButton();
+            this._addDisabledButton();
         } else {
-            // this._button.classList.remove(this._inactiveButtonClass);
-            // this._button.removeAttribute('disabled');
-            this.removeDisabledButton();
+            this._removeDisabledButton();
         }
     };
 

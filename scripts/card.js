@@ -5,6 +5,7 @@ export class Card {
         this._image = data.image;
         this._templateSelector = templateSelector;
         this._handleOpenCard = handleOpenCard;
+        console.log(this._handleOpenCard)
     }
 
     _getTemplate() {
@@ -25,6 +26,10 @@ export class Card {
         this._element.remove();
         this._element = null;
     }
+    
+    _handleOpenCard() {
+        this._handleOpenCard(this._name, this._image)
+    }
 
     _setEventListeners() {
         this._likeBtn = this._element.querySelector('.element__button-like');
@@ -33,7 +38,7 @@ export class Card {
         
         this._likeBtn.addEventListener('click', () => this._likeHandle());
         this._deleteBtn.addEventListener('click', () => this._deletImageHandle());
-        this._img.addEventListener('click', () => this._handleOpenCard(this._name, this._image));
+        this._img.addEventListener('click', () => this._handleOpenCard());
 
     }
 
