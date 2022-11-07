@@ -5,7 +5,6 @@ export class Card {
         this._image = data.image;
         this._templateSelector = templateSelector;
         this._handleOpenCard = handleOpenCard;
-        console.log(this._handleOpenCard)
     }
 
     _getTemplate() {

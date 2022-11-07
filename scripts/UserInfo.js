@@ -1,17 +1,18 @@
 export class UserInfo {
-    constructor({name, job}) {
+    constructor({name, work}) {
         this._name = name;
-        this._job = job;
+        this._work = work;
+        console.log({name,work})
     }
 
     getUserInfo () {
-        return {name: this._name.textContent, job: this._job.textContent}
+        return {name: this._name.textContent, work: this._work.textContent};
     }
 
-    setUserInfo(name, job) {
-        if (name, job) {
+    setUserInfo(name, work) {
+        if (name, work) {
             this._name.textContent = name;
-            this._job.textContent = job;
+            this._work.textContent = work;
         }
     }
 }

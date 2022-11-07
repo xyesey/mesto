@@ -12,7 +12,7 @@ export class PopupWithForm extends Popup {
         return this._inputList.reduce((data, input) => {
             data[input.name] = input.value;
             return data;
-        })
+        }, {})
     }
 
     setEventListeners() {

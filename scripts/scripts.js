@@ -18,15 +18,11 @@ const validationConfig = {
 };
 
 // Popups
-const popupSelector = document.querySelectorAll('popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-added');
 // Buttons
-const btnCloseAdd = popupAdd.querySelector('.popup__close-button');
-const btnCloseEdit = popupEdit.querySelector('.popup__close-button');
 const btnEdit = document.querySelector('.profile__edit-button');
 const btnAdd = document.querySelector('.profile__add-button');
-const btnCreate = document.querySelector('.createBtn');
 // Popup save value form
 const formElementEdit = document.querySelector('#formEdit');
 const nameInput = formElementEdit.querySelector('#nameInput');
@@ -36,12 +32,7 @@ const jobProfile = document.querySelector('.profile__info-subtitle');
 //Cards
 const cardElements = document.querySelector('.elements')
 const popupConteinerPhoto = document.querySelector('.popup-photo')
-const popupImage = document.querySelector('.popup__image');
-const btnCloseImage = document.querySelector('.popup__close-button');
-const popupCaption = document.querySelector('.popup__caption');
 const formElementAdd = document.querySelector('#formAdded')
-const placeInput = document.querySelector('#placeInput');
-const linkInput = document.querySelector('#linkInput');
 const templateElement = document.querySelector('.template')
 
 // Function for render and create cards in class
@@ -49,9 +40,18 @@ const templateElement = document.querySelector('.template')
 const renderCard = new Section({
     items: initialCards, renderer: (item) => renderCard.addItem(createCard(item))
 }, cardElements);
-const userInfo = new UserInfo(name, jobProfile);
-const popupWithProfileForm = new PopupWithForm(popupEdit);
-const popupWithCardForm = new PopupWithForm(popupAdd);
+const userInfo = new UserInfo({
+    name: name,
+    work: jobProfile,
+});
+const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
+    userInfo.setUserInfo({name: data.name, work: data.work}, console.log(data));
+    popupWithProfileForm.close();
+});
+const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
+    cardElements.prepend(createCard({name: data.place, image: data.link}));
+    popupWithCardForm.close();
+});
 const validCard = new FormValidate(formElementAdd, validationConfig);
 const validProfile = new FormValidate(formElementEdit, validationConfig);
 const imagePopup = new PopupWithImage(popupConteinerPhoto);
@@ -62,70 +62,27 @@ validCard.enableValidation();
 validProfile.enableValidation();
 imagePopup.setEventListeners();
 popupWithProfileForm.setEventListeners();
+popupWithCardForm.setEventListeners();
 
 function createCard(data) {
-    const newCard = new Card(data,templateElement, imagePopup.open(popupConteinerPhoto));
+    const newCard = new Card(data,templateElement, () => imagePopup.open(data.name, data.image));
     return newCard.createCard();
-}
-
-formElementAdd.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const data = {
-        name: placeInput.value,
-        link: linkInput.value,
-    }
-    
-    formElementAdd.reset();
-    cardElements.prepend(createCard(data));
-    closePopup(popupAdd);
-})
-
-function handleOpenCard(name, link) {
-    // popupImage.src = link;
-    // popupImage.alt = name;
-    // popupCaption.textContent = name;
-    imagePopup.open()
-}
-
-function openEditPopup() {
-    popupWithProfileForm.open();
-}
-
-function openCardPopup() {
-    popupWithCardForm.open();
 }
 
 // Listeners for buttons
 
 btnEdit.addEventListener('click', function () {
-    openEditPopup(popupEdit);
-    nameInput.value = name.textContent
-    jobInput.value = jobProfile.textContent
+    // openEditPopup(popupEdit);
+    popupWithProfileForm.open();
+    const value = userInfo.getUserInfo()
+    nameInput.value = value.name
+    jobInput.value = value.work
 });
-// btnCloseEdit.addEventListener('click', function () {
-//    closePopup(popupEdit);
-// });
-
-// btnCloseAdd.addEventListener('click', function () {
-//     closePopup(popupAdd);
-// })
 
 btnAdd.addEventListener('click', function () {
-    openCardPopup(popupAdd);
+    popupWithCardForm.open();
     formElementAdd.reset();
     validCard.setButtonState();
 });
-
-// Function for Falidate all Forms
-
-// function editPopupFormHandler (evt) {
-//     evt.preventDefault();
-//     name.textContent = nameInput.value;
-//     jobProfile.textContent = jobInput.value;
-//     closePopup(popupEdit);
-// }
-
-// formElementEdit.addEventListener('submit', editPopupFormHandler);
 
 
