@@ -9,10 +9,8 @@ export class UserInfo {
         return {name: this._name.textContent, work: this._work.textContent};
     }
 
-    setUserInfo(name, work) {
-        if (name, work) {
-            this._name.textContent = name;
-            this._work.textContent = work;
-        }
+    setUserInfo(data) {
+        this._name.textContent = data.name;
+        this._work.textContent = data.work;
     }
 }

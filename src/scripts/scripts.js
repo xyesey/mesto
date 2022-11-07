@@ -57,7 +57,6 @@ const validProfile = new FormValidate(formElementEdit, validationConfig);
 const imagePopup = new PopupWithImage(popupConteinerPhoto);
 
 renderCard.rendererItems();
-userInfo.setUserInfo();
 validCard.enableValidation();
 validProfile.enableValidation();
 imagePopup.setEventListeners();
@@ -72,7 +71,6 @@ function createCard(data) {
 // Listeners for buttons
 
 btnEdit.addEventListener('click', function () {
-    // openEditPopup(popupEdit);
     popupWithProfileForm.open();
     const value = userInfo.getUserInfo()
     nameInput.value = value.name
