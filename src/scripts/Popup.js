@@ -22,11 +22,11 @@ export class Popup {
     }
 
     setEventListeners() {
-        this._popup.addEventListener('mousedown', (e) => {
-            if (e.target === e.currentTarget) {
-                this.close()
+        this._popup.addEventListener('click', (e) => {
+            if (e.target.classList.contains('popup__body')) {
+                this.close();
             }
-        })
+        });
 
         this._popupCloseBtn.addEventListener('click', () => {
             this.close();
