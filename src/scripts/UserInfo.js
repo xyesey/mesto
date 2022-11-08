@@ -2,7 +2,6 @@ export class UserInfo {
     constructor({name, work}) {
         this._name = name;
         this._work = work;
-        console.log({name,work})
     }
 
     getUserInfo () {

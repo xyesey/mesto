@@ -7,11 +7,11 @@
   </head>
   <body class="root">
     <header class="header">
-      <img src="./image/logo.svg" class="header__logo" alt="МестоЛоготип">
+      <img src="<%=require('./image/logo.svg')%>" class="header__logo" alt="МестоЛоготип">
     </header>
     <main>
       <section class="profile">
-        <img src="./image/rapkysto.jpg" class="profile__avatar" alt="АватарФото">
+        <img src="<%=require('./image/rapkysto.jpg')%>" class="profile__avatar" alt="АватарФото">
           <div class="profile__info">
             <div class="profile__info-edit">
               <h1 class="profile__info-title">Жак-OG Кусто</h1>
@@ -78,7 +78,7 @@
     </section>
    <template id="template" class="template">
     <article class="element">
-      <button arial-label="Удалить" class="element__btn-delete" type=></button>
+      <button arial-label="Удалить" class="element__btn-delete" type="button"></button>
       <img src="#" class="element__image" alt="Фото">
       <div class="element__position">
         <h2 class="element__title"></h2>
