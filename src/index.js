@@ -48,9 +48,7 @@ function createCard(data) {
 
 btnEdit.addEventListener('click', function () {
     popupWithProfileForm.open();
-    // const value = userInfo.getUserInfo()
-    // nameInput.value = value.name
-    // jobInput.value = value.work
+    popupWithProfileForm.setInputValues(userInfo.getUserInfo());
 });
 
 btnAdd.addEventListener('click', function () {
