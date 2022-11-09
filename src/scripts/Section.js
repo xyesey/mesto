@@ -3,6 +3,8 @@ export class Section {
         this._items = items;
         this._renderer = renderer;
         this._containerSelector = containerSelector;
+        console.log(this._items)
+        console.log(this._renderer)
     }
 
     rendererItems() {
@@ -10,6 +12,6 @@ export class Section {
     }
 
     addItem(element) {
-        this._containerSelector.append(element)
+        this._containerSelector.prepend(element)
     }
 }

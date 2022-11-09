@@ -7,34 +7,9 @@ import { PopupWithImage } from './scripts/PopupWithImage.js';
 import { UserInfo } from './scripts/UserInfo.js';
 import { PopupWithForm } from './scripts/PopupWithForm.js';
 import "./pages/index.css"
-
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_inactive',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
-    errorSelector: 'popup__error'
-};
-
-// Popups
-const popupEdit = document.querySelector('.popup-edit');
-const popupAdd = document.querySelector('.popup-added');
-// Buttons
-const btnEdit = document.querySelector('.profile__edit-button');
-const btnAdd = document.querySelector('.profile__add-button');
-// Popup save value form
-const formElementEdit = document.querySelector('#formEdit');
-const nameInput = formElementEdit.querySelector('#nameInput');
-const jobInput = formElementEdit.querySelector('#jobInput');
-const name = document.querySelector('.profile__info-title');
-const jobProfile = document.querySelector('.profile__info-subtitle');
-//Cards
-const cardElements = document.querySelector('.elements')
-const popupConteinerPhoto = document.querySelector('.popup-photo')
-const formElementAdd = document.querySelector('#formAdded')
-const templateElement = document.querySelector('.template')
+import { validationConfig, popupEdit, popupAdd, btnEdit, btnAdd,
+         formElementEdit, nameInput, jobInput, name, jobProfile, 
+         cardElements, popupConteinerPhoto, formElementAdd, templateElement } from './utils/constants.js';
 
 // Function for render and create cards in class
 
@@ -50,7 +25,7 @@ const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
     popupWithProfileForm.close();
 });
 const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
-    cardElements.prepend(createCard({name: data.place, image: data.link}));
+    renderCard.addItem(createCard({name: data.place, image: data.link}));
     popupWithCardForm.close();
 });
 const validCard = new FormValidate(formElementAdd, validationConfig);
@@ -73,9 +48,9 @@ function createCard(data) {
 
 btnEdit.addEventListener('click', function () {
     popupWithProfileForm.open();
-    const value = userInfo.getUserInfo()
-    nameInput.value = value.name
-    jobInput.value = value.work
+    // const value = userInfo.getUserInfo()
+    // nameInput.value = value.name
+    // jobInput.value = value.work
 });
 
 btnAdd.addEventListener('click', function () {
