@@ -6,10 +6,10 @@ export const btnEdit = document.querySelector('.profile__edit-button');
 export const btnAdd = document.querySelector('.profile__add-button');
 // Popup save value form
 export const formElementEdit = document.querySelector('#formEdit');
-export const nameInput = formElementEdit.querySelector('#nameInput');
-export const jobInput = formElementEdit.querySelector('#jobInput');
 export const name = document.querySelector('.profile__info-title');
 export const jobProfile = document.querySelector('.profile__info-subtitle');
+export const avatarProfile = document.querySelector('.profile__avatar');
+export const confirmPopup = document.querySelector('.popup-delete')
 //Cards
 export const cardElements = document.querySelector('.elements')
 export const popupConteinerPhoto = document.querySelector('.popup-photo')

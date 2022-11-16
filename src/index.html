@@ -65,6 +65,30 @@
         </div>
       </div>
     </section>
+    <section class="popup popup-avatar">
+      <div class="popup__body">
+        <div class="popup__content-avatar">
+          <button arial-label="Закрыть" type="button" class="popup__close-button"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form id="formAdded" class="popup__form" name="form" novalidate>
+            <label>
+              <input required type="url" name="link" placeholder="Ссылка на картинку" id="linkInput" class="popup__place-picture popup__input">
+                <span id="linkInput-error" class="popup__error">Введите адрес сайта</span>
+            </label>
+            <button type="submit" class="popup__save-button createBtn">Обновить</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="popup popup-delete">
+      <div class="popup__body">
+        <div class="popup__content-delete">
+          <button arial-label="Закрыть" type="button" class="popup__close-button"></button>
+          <h3 class="popup__title popup__title-delete">Вы уверены?</h3>
+          <button type="submit" class="popup__confirm-button">Да</button>
+        </div>
+      </div>
+    </section>
     <section class="popup popup-photo">
       <div class="popup__body popup__body_dark">
         <div class="popup__content-photo">
@@ -82,7 +106,10 @@
       <img src="#" class="element__image" alt="Фото">
       <div class="element__position">
         <h2 class="element__title"></h2>
+        <div class="element__section">
           <button type="button" class="element__button-like"></button>
+          <p class="element__like-counter"></p>
+        </div>
       </div>
     </article>
    </template>    

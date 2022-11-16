@@ -6,3 +6,8 @@
   object-fit: cover;
   object-position: center;
 }
+
+.profile__avatar:hover {
+  background-image: url(../../../image/avatar.svg);
+  background: rgba(0, 0, 0, 0.8);
+}

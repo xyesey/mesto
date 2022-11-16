@@ -33,4 +33,12 @@ export class PopupWithForm extends Popup {
         super.close();
         this._form.reset();
     }
+
+    setLoading(isLoading) {
+        if (isLoading) {
+            this._submitBtn.textContent = "Сохранение...";
+        } else {
+            this._submitBtn.textContent = "Сохранить"
+        }
+    }
 }
