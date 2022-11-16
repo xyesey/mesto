@@ -16,9 +16,11 @@
 .element__title{color:#000;flex-shrink:3;font-size:24px;font-weight:900;line-height:29px;margin:25px 0 31px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__image{background-color:#000;border-radius:10px 10px 0 0;color:#fff;display:block;height:282px;-o-object-fit:cover;object-fit:cover;width:100%}.element__image:hover{cursor:pointer}
 .element__button-like{align-self:center;background-color:#fff;background-image:url(7913ddfd147a48616b09.svg);background-repeat:no-repeat;background-size:cover;border:none;cursor:pointer;flex-shrink:0;height:19px;width:22px}.element__button-like:hover{opacity:.5}
-.element__position{display:flex;flex-direction:row;justify-content:space-between;margin:0 15px 0 21px}
+.element__position{align-items:center;display:flex;flex-direction:row;justify-content:space-between;margin:0 15px 0 21px}
 .element__button-like_active{background-image:url(fe17a515669479b1e649.svg)}
 .element__btn-delete{background-color:transparent;background-image:url(cbc09a894bdd4c956365.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;height:18px;position:absolute;right:20px;top:20px;width:18px}.element__btn-delete:hover{opacity:.5}
+.element__like-counter{color:#000;font-size:13px;line-height:16px;margin:3px 0;text-align:center}
+.element__btn-delete_hide{visibility:hidden}
 .footer{display:flex;margin:0 auto;max-width:880px;padding:67px 0 60px}@media screen and (max-width:320px){.footer{padding:48px 19px 36px}}
 .footer__author{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:720px){.footer__author{margin-left:45px}}@media screen and (max-width:320px){.footer__author{font-size:14px;line-height:17px;margin:0}}
 .popup{height:100%;left:0;opacity:0;position:fixed;top:0;transition:visibility,opacity .5s linear;visibility:hidden;width:100%}
