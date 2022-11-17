@@ -46,6 +46,8 @@ export class Card {
         this._element.querySelector('.element__like-counter').textContent = number;
         this._likedMe = false;
     }
+
+    // Не смог додуматься как реализовать через одну функцию
     // handleLikeCounter(number) {
     //     this._element.querySelector('.element__like-counter').textContent = number;
 
