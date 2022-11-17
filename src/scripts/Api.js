@@ -1,6 +1,6 @@
 export class Api {
     constructor(options) {
-        this._url = options._url;
+        this._url = options.url;
         this._headers = options.headers
     }
 
@@ -31,7 +31,7 @@ export class Api {
     }
 
     setAvatar(data) {
-        return this._fetch(`/user/me/avatar`, `PATCH`, data)
+        return this._fetch(`/users/me/avatar`, `PATCH`, data)
     }
 
     getInitialCards() {
@@ -39,7 +39,7 @@ export class Api {
     }
 
     postedCard(data) {
-        return this._fetch(`/cards/${id}`, 'POST', data)
+        return this._fetch(`/cards`, 'POST', data)
     }
 
     deleteCard(id) {

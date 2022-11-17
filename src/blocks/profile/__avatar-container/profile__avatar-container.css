@@ -1,0 +1,7 @@
+.profile__avatar-container {
+    background-image: url(../../../image/avatar.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+    border-radius: 50%;
+}

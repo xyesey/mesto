@@ -11,7 +11,9 @@
     </header>
     <main>
       <section class="profile">
-        <img src="<%=require('./image/rapkysto.jpg')%>" class="profile__avatar" alt="АватарФото">
+        <div class="profile__avatar-container">
+          <img src="#" class="profile__avatar" alt="АватарФото">
+        </div>
           <div class="profile__info">
             <div class="profile__info-edit">
               <h1 class="profile__info-title">Жак-OG Кусто</h1>
@@ -70,7 +72,7 @@
         <div class="popup__content-avatar">
           <button arial-label="Закрыть" type="button" class="popup__close-button"></button>
           <h3 class="popup__title">Обновить аватар</h3>
-          <form id="formAdded" class="popup__form" name="form" novalidate>
+          <form id="formAvatar" class="popup__form" name="form" novalidate>
             <label>
               <input required type="url" name="link" placeholder="Ссылка на картинку" id="linkInput" class="popup__place-picture popup__input">
                 <span id="linkInput-error" class="popup__error">Введите адрес сайта</span>

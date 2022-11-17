@@ -9,9 +9,9 @@ export class UserInfo {
         return {name: this._name.textContent, work: this._work.textContent};
     }
 
-    setUserInfo(data) {
-        this._name.textContent = data.name;
-        this._work.textContent = data.work;
+    setUserInfo({ name, work, avatar }) {
+        this._name.textContent = name;
+        this._work.textContent = work;
         this._avatar.src = avatar;
     }
 }

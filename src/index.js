@@ -10,7 +10,7 @@ import "./pages/index.css"
 import { validationConfig, popupEdit, popupAdd, btnEdit, btnAdd,
          formElementEdit, name, jobProfile, 
          cardElements, popupConteinerPhoto, formElementAdd, templateElement, 
-         avatarProfile, confirmPopup } from './utils/constants.js';
+         avatar, confirmPopup, popupAvatar, formElementAvatar } from './utils/constants.js';
 
 // Function for render and create cards in class
 
@@ -23,46 +23,39 @@ const api = new Api({
 })
 
 const renderCard = new Section({
-    renderer: (item, myId) => renderCard.addItem(createCard(item, myId))
+    renderer: (data) => renderCard.addItem(
+        createCard(data))
 }, cardElements);
-
-// const renderCard = new Section({
-//     renderer: (data) => {
-//         renderCard.addItem(createCard(data))
-//     }
-// }, cardElements);
 
 const userInfo = new UserInfo({
     name: name,
     work: jobProfile,
-    avatar: avatarProfile,
+    avatar: avatar,
 });
-// const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
-//     userInfo.setUserInfo({name: data.name, work: data.work});
-//     popupWithProfileForm.close();
-// });
+
 const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
-    api.infoProfileEdit({name: data.name, work: data.work})
+    api.infoProfileEdit({name: data.name, about: data.work})
         .then((res) => {
-            userInfo.setUserInfo(res.name, res.work, res.avatar)
+            userInfo.setUserInfo({
+                name: res.name, 
+                work: res.about,
+                avatar: res.avatar})
         })
         .then(() => popupWithProfileForm.close())
-        .catch((err) => console.log(err.message))
+        .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
         .finally(() => popupWithProfileForm.setLoading(false));
 });
-// const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
-//     renderCard.addItem(createCard({name: data.place, image: data.link}));
-//     popupWithCardForm.close();
-// });
+
 const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
-    api.postedCard({name: data.place, image: data.link})
+    api.postedCard({name: data.place, link: data.link})
     .then((res) => {
-        renderCard.addItem(postedCard(res, res.owner._id), true)
+        renderCard.addItem(createCard(res, res.owner._id), true)
     })
     .then(() => popupWithCardForm.close())
-    .catch((err) => console.log(err.message))
+    .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
     .finally(() => popupWithCardForm.setLoading(false));
 });
+
 const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
     api.deleteCard(id)
         .then(() => {
@@ -71,25 +64,35 @@ const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
         .then(() => {
             popupConfirm.close();
         })
-        .catch((err) => {
-            console.log(err)
-        });
+        .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
 })
+
+const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
+    api.setAvatar({avatar: data.link})
+    .then((res) => {
+        userInfo.setUserInfo(res.avatar)
+    })
+    .then(() => popupAvatar.close())
+    .catch((err) = console.log(`Ошибка с установкой аватара: ${err}`))
+    .finally(() => popupAvatar.setLoading(false))
+})
+
 const validCard = new FormValidate(formElementAdd, validationConfig);
 const validProfile = new FormValidate(formElementEdit, validationConfig);
-// const validAvatar = new FormValidate()
+const validAvatar = new FormValidate(formElementAvatar, validationConfig);
 const imagePopup = new PopupWithImage(popupConteinerPhoto);
 
-renderCard.rendererItems();
+validAvatar.enableValidation();
 validCard.enableValidation();
 validProfile.enableValidation();
 imagePopup.setEventListeners();
 popupWithProfileForm.setEventListeners();
 popupWithCardForm.setEventListeners();
 popupConfirm.setEventListeners();
+changeAvatarPopup.setEventListeners();
 
 function createCard(data, myId) {
-    const newCard = new Card(data,templateElement, () => imagePopup.open(data.name, data.image), 
+    const newCard = new Card(data,templateElement, () => imagePopup.open(data.name, data.link), 
     () => { popupConfirm.open({
         id: data._id,
         callback: () => newCard.deletImageHandle(),
@@ -98,20 +101,23 @@ function createCard(data, myId) {
 (likedMe) => {
     if (!likedMe) {
         api.likeActive(data._id)
-        .then((res) => {
-            newCard.handleLikeCounter(res.likes.length);
-        })
-        .catch((err) => console.log(err.message));
+        .then((res) => newCard.setLike(res.likes.length))
+        .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
     } else {
         api.likeInactive(data._id)
-        .then((res) => newCard.handleLikeCounter(res.likes.length))
-        .catch((err) => console.log(err.message))
+        .then((res) => newCard.removeLike(res.likes.length))
+        .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
     }
 }, myId, cardElements);
     return newCard.createCard();
 }
 
 // Listeners for buttons
+
+avatar.addEventListener('click', function () {
+    formElementAvatar.reset();
+    changeAvatarPopup.open()
+})
 
 btnEdit.addEventListener('click', function () {
     popupWithProfileForm.open();
@@ -127,7 +133,11 @@ btnAdd.addEventListener('click', function () {
 Promise.all([api.getInfoProfile(), api.getInitialCards()])
     .then(([profileData, initialCards]) => {
         const myId = profileData._id;
-        userInfo.setUserInfo(profileData.name, profileData.work, profileData.avatar);
-        renderCard.addItem(initialCards, myId)
+        userInfo.setUserInfo({
+            name: profileData.name,
+            work: profileData.about,
+            avatar: profileData.avatar
+        });
+        renderCard.rendererItems(initialCards, myId);
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
