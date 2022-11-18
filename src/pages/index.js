@@ -1,16 +1,16 @@
-import { Card } from './scripts/Card.js';
-import { FormValidate } from './scripts/FormValidator.js';
-import { Section } from './scripts/Section.js';
-import { Api } from './scripts/Api.js';
-import { PopupWithImage } from './scripts/PopupWithImage.js';
-import { UserInfo } from './scripts/UserInfo.js';
-import { PopupWithForm } from './scripts/PopupWithForm.js';
-import { PopupConfirm } from './scripts/PopupConfirm.js';
-import "./pages/index.css"
+import { Card } from '../scripts/Card.js';
+import { FormValidate } from '../scripts/FormValidator.js';
+import { Section } from '../scripts/Section.js';
+import { Api } from '../scripts/Api.js';
+import { PopupWithImage } from '../scripts/PopupWithImage.js';
+import { UserInfo } from '../scripts/UserInfo.js';
+import { PopupWithForm } from '../scripts/PopupWithForm.js';
+import { PopupConfirm } from '../scripts/PopupConfirm.js';
+import "./index.css"
 import { validationConfig, popupEdit, popupAdd, btnEdit, btnAdd,
          formElementEdit, name, jobProfile, 
          cardElements, popupConteinerPhoto, formElementAdd, templateElement, 
-         avatar, confirmPopup, popupAvatar, formElementAvatar } from './utils/constants.js';
+         avatar, confirmPopup, popupAvatar, formElementAvatar } from '../utils/constants.js';
 
 // Function for render and create cards in class
 
@@ -36,6 +36,7 @@ const userInfo = new UserInfo({
 const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
     api.infoProfileEdit({name: data.name, about: data.work})
         .then((res) => {
+            console.log(res)
             userInfo.setUserInfo({
                 name: res.name, 
                 work: res.about,
@@ -43,7 +44,7 @@ const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
         })
         .then(() => popupWithProfileForm.close())
         .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-        .finally(() => popupWithProfileForm.setLoading(false));
+        .finally(() => popupWithProfileForm.setLoading(true));
 });
 
 const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
@@ -53,7 +54,7 @@ const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
     })
     .then(() => popupWithCardForm.close())
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-    .finally(() => popupWithCardForm.setLoading(false));
+    .finally(() => popupWithCardForm.setLoading(true));
 });
 
 const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
@@ -70,11 +71,15 @@ const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
 const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
     api.setAvatar({avatar: data.link})
     .then((res) => {
-        userInfo.setUserInfo(res.avatar)
+        userInfo.setUserInfo({
+            name: res.name, 
+            work: res.about,
+            avatar: res.avatar,
+        })
     })
-    .then(() => popupAvatar.close())
-    .catch((err) = console.log(`Ошибка с установкой аватара: ${err}`))
-    .finally(() => popupAvatar.setLoading(false))
+    .then(() => changeAvatarPopup.close())
+    .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
+    .finally(() => changeAvatarPopup.setLoading(true))
 })
 
 const validCard = new FormValidate(formElementAdd, validationConfig);
@@ -115,7 +120,6 @@ function createCard(data, myId) {
 // Listeners for buttons
 
 avatar.addEventListener('click', function () {
-    formElementAvatar.reset();
     changeAvatarPopup.open()
 })
 
@@ -126,7 +130,6 @@ btnEdit.addEventListener('click', function () {
 
 btnAdd.addEventListener('click', function () {
     popupWithCardForm.open();
-    formElementAdd.reset();
     validCard.setButtonState();
 });
 

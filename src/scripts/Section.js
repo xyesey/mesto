@@ -10,7 +10,11 @@ export class Section {
         })
     }
 
-    addItem(element) {
-        this._containerSelector.prepend(element)
+    addItem(element, first) {
+        if (first) {
+            this._containerSelector.prepend(element)
+        } else {
+            this._containerSelector.append(element)
+        }
     }
 }
