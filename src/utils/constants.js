@@ -17,7 +17,6 @@ export const formElementAvatar = document.querySelector('#formAvatar');
 export const cardElements = document.querySelector('.elements')
 export const popupConteinerPhoto = document.querySelector('.popup-photo')
 export const formElementAdd = document.querySelector('#formAdded')
-export const templateElement = document.querySelector('.template');
 
 export const validationConfig = {
     formSelector: '.popup__form',

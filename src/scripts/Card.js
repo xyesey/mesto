@@ -19,7 +19,7 @@ export class Card {
 
     _getTemplate() {
         const cardElement = document
-        .querySelector('.template') // Попробовать поиск через this._templateSelector
+        .querySelector(this._templateSelector)
         .content
         .querySelector('.element')
         .cloneNode(true);

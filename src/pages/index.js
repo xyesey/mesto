@@ -9,7 +9,7 @@ import { PopupConfirm } from '../scripts/PopupConfirm.js';
 import "./index.css"
 import { validationConfig, popupEdit, popupAdd, btnEdit, btnAdd,
          formElementEdit, name, jobProfile, 
-         cardElements, popupConteinerPhoto, formElementAdd, templateElement, 
+         cardElements, popupConteinerPhoto, formElementAdd,
          avatar, confirmPopup, popupAvatar, formElementAvatar } from '../utils/constants.js';
 
 // Function for render and create cards in class
@@ -96,7 +96,7 @@ popupConfirm.setEventListeners();
 changeAvatarPopup.setEventListeners();
 
 function createCard(data, myId) {
-    const newCard = new Card(data,templateElement, () => imagePopup.open(data.name, data.link), 
+    const newCard = new Card(data, '.template', () => imagePopup.open(data.name, data.link), 
     () => { popupConfirm.open({
         id: data._id,
         callback: () => newCard.deletImageHandle(),
