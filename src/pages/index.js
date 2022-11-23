@@ -15,9 +15,9 @@ import { validationConfig, popupEdit, popupAdd, btnEdit, btnAdd,
 // Function for render and create cards in class
 
 const api = new Api({
-    url: "https://mesto.nomoreparties.co/v1/cohort-52",
+    url: "https://mesto.nomoreparties.co/v1/cohort-54",
     headers: {
-        authorization: "c14af60c-4ab1-4167-a769-5c72c322187a",
+        authorization: "b47db11d-0dc8-484e-a4c6-bb7d19733a74",
         "content-type": "application/json",
     }
 })
@@ -36,7 +36,6 @@ const userInfo = new UserInfo({
 const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
     api.infoProfileEdit({name: data.name, about: data.work})
         .then((res) => {
-            console.log(res)
             userInfo.setUserInfo({
                 name: res.name, 
                 work: res.about,
@@ -120,12 +119,14 @@ function createCard(data, myId) {
 // Listeners for buttons
 
 avatar.addEventListener('click', function () {
-    changeAvatarPopup.open()
+    changeAvatarPopup.open();
+    validAvatar.setButtonState();
 })
 
 btnEdit.addEventListener('click', function () {
     popupWithProfileForm.open();
     popupWithProfileForm.setInputValues(userInfo.getUserInfo());
+    // popupWithProfileForm.resetValidation();
 });
 
 btnAdd.addEventListener('click', function () {

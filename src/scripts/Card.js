@@ -47,19 +47,6 @@ export class Card {
         this._likedMe = false;
     }
 
-    // Не смог додуматься как реализовать через одну функцию
-    // handleLikeCounter(number) {
-    //     this._element.querySelector('.element__like-counter').textContent = number;
-
-    //     if (this._likeHandle()) {
-    //         this._element.querySelector('.element__button-like')
-    //             .classList.add('element__button-like_active')
-    //     } else {
-    //         this._element.querySelector('.element__button-like')
-    //             .classList.remove('element__button-like_active')
-    //     }
-    // }
-
     deletImageHandle() {
         this._element.remove();
         this._element = null;
