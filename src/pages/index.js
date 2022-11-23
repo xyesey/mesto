@@ -95,6 +95,8 @@ popupWithCardForm.setEventListeners();
 popupConfirm.setEventListeners();
 changeAvatarPopup.setEventListeners();
 
+// const likeCounter = document.querySelector('.element__like-counter');
+
 function createCard(data, myId) {
     const newCard = new Card(data, '.template', () => imagePopup.open(data.name, data.link), 
     () => { popupConfirm.open({

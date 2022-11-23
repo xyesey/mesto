@@ -37,13 +37,15 @@ export class Card {
 
     setLike(number) {
         this._likeBtn.classList.add("element__button-like_active");
-        this._element.querySelector('.element__like-counter').textContent = number;
+        this._likeCounter.textContent = number;
+        // this._element.querySelector('.element__like-counter').textContent = number;
         this._likedMe = true;
     }
     
     removeLike(number) {
         this._likeBtn.classList.remove("element__button-like_active");
-        this._element.querySelector('.element__like-counter').textContent = number;
+        this._likeCounter.textContent = number;
+        // this._element.querySelector('.element__like-counter').textContent = number;
         this._likedMe = false;
     }
 
@@ -65,16 +67,17 @@ export class Card {
     _setEventListeners() {
         this._likeBtn = this._element.querySelector('.element__button-like');
         this._deleteBtn = this._element.querySelector('.element__btn-delete');
-        this._img = this._element.querySelector('.element__image');
+        // this._photo = this._element.querySelector('.element__image');
         
         this._likeBtn.addEventListener('click', () => this._handleBtnLike());
         this._deleteBtn.addEventListener('click', () => this._handleBtnDelete());
-        this._img.addEventListener('click', () => this._handleOpenCard());
+        this._photo.addEventListener('click', () => this._handleOpenCard());
 
     }
 
     createCard() {
         this._element = this._getTemplate();
+        this._likeCounter = this._element.querySelector('.element__like-counter')
         this._photo = this._element.querySelector('.element__image');
         this._photoName = this._element.querySelector('.element__title');
         this._photo.src = this._image;
@@ -84,8 +87,7 @@ export class Card {
         this._removeBtnDelete();
         
         if (this._cardLiked) {
-            this._element.querySelector('.element__like-counter')
-                .textContent = this._likes.length;
+            this._likeCounter.textContent = this._likes.length;
         }
 
         if (this._likedMe) {

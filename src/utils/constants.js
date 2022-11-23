@@ -18,6 +18,7 @@ export const cardElements = document.querySelector('.elements')
 export const popupConteinerPhoto = document.querySelector('.popup-photo')
 export const formElementAdd = document.querySelector('#formAdded')
 
+
 export const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
