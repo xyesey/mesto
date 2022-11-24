@@ -34,6 +34,7 @@ const userInfo = new UserInfo({
 });
 
 const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
+    popupWithProfileForm.renderLoading(true)
     api.infoProfileEdit({name: data.name, about: data.work})
         .then((res) => {
             userInfo.setUserInfo({
@@ -41,33 +42,31 @@ const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
                 work: res.about,
                 avatar: res.avatar})
         })
-        .then(() => popupWithProfileForm.close())
+        .then(() => popupWithProfileForm.renderLoading(false))
         .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-        .finally(() => popupWithProfileForm.renderLoading(true));
+        .finally(() => popupWithProfileForm.close());
 });
 
 const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
+    popupWithCardForm.renderLoading(true)
     api.postedCard({name: data.place, link: data.link})
     .then((res) => {
         renderCard.addItem(createCard(res, res.owner._id), true)
     })
-    .then(() => popupWithCardForm.close())
+    .then(() => popupWithCardForm.renderLoading(false))
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-    .finally(() => popupWithCardForm.renderLoading(true));
+    .finally(() => popupWithCardForm.close());
 });
 
 const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
     api.deleteCard(id)
-        .then(() => {
-            callback();
-        })
-        .then(() => {
-            popupConfirm.close();
-        })
+        .then(() => callback())
+        .then(() => popupConfirm.close())
         .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
 })
 
 const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
+    changeAvatarPopup.renderLoading(true)
     api.setAvatar({avatar: data.link})
     .then((res) => {
         userInfo.setUserInfo({
@@ -76,9 +75,9 @@ const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
             avatar: res.avatar,
         })
     })
-    .then(() => changeAvatarPopup.close())
+    .then(() => changeAvatarPopup.renderLoading(false))
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-    .finally(() => changeAvatarPopup.renderLoading(true))
+    .finally(() => changeAvatarPopup.close())
 })
 
 const validCard = new FormValidate(formElementAdd, validationConfig);
