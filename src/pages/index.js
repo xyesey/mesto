@@ -34,28 +34,24 @@ const userInfo = new UserInfo({
 });
 
 const popupWithProfileForm = new PopupWithForm(popupEdit, (data) => {
-    popupWithProfileForm.renderLoading(true)
-    api.infoProfileEdit({name: data.name, about: data.work})
+    return api.infoProfileEdit({name: data.name, about: data.work})
         .then((res) => {
             userInfo.setUserInfo({
                 name: res.name, 
                 work: res.about,
                 avatar: res.avatar})
         })
-        .then(() => popupWithProfileForm.renderLoading(false))
+        .then(() => popupWithProfileForm.close())
         .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-        .finally(() => popupWithProfileForm.close());
 });
 
 const popupWithCardForm = new PopupWithForm(popupAdd, (data) => {
-    popupWithCardForm.renderLoading(true)
-    api.postedCard({name: data.place, link: data.link})
+    return api.postedCard({name: data.place, link: data.link})
     .then((res) => {
         renderCard.addItem(createCard(res, res.owner._id), true)
     })
-    .then(() => popupWithCardForm.renderLoading(false))
+    .then(() => popupWithCardForm.close())
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-    .finally(() => popupWithCardForm.close());
 });
 
 const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
@@ -66,8 +62,7 @@ const popupConfirm = new PopupConfirm(confirmPopup, ({id, callback}) => {
 })
 
 const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
-    changeAvatarPopup.renderLoading(true)
-    api.setAvatar({avatar: data.link})
+    return api.setAvatar({avatar: data.link})
     .then((res) => {
         userInfo.setUserInfo({
             name: res.name, 
@@ -75,9 +70,8 @@ const changeAvatarPopup = new PopupWithForm(popupAvatar, (data) => {
             avatar: res.avatar,
         })
     })
-    .then(() => changeAvatarPopup.renderLoading(false))
+    .then(() => changeAvatarPopup.close())
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`))
-    .finally(() => changeAvatarPopup.close())
 })
 
 const validCard = new FormValidate(formElementAdd, validationConfig);
